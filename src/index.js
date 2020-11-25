@@ -26,23 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Modal windows
-
   const modalWindows = () => {
-    //modal 1, id = free_visit_form
-    const modalOne = () => {
-      const modal = document.getElementById('free_visit_form'),
-            openModal = document.querySelector('.open-popup'),
-            modelForm = document.getElementById('form2');
 
-      const clearForm = () => {
-        [...modelForm.elements].forEach(item => {
-          if (item.tagName.toLowerCase() !== 'button' && item.type !== 'button') {
-            item.value = '';
-          }
-        });
-      };
+    const clearForm = (form) => {
+      [...form.elements].forEach(item => {
+        if (item.tagName.toLowerCase() !== 'button' && item.type !== 'button') {
+          item.value = '';
+        }
+      });
+    };
 
-      openModal.addEventListener('click', () => {
+    const openCloseModal = (open, modal, modalForm) => {
+      open.addEventListener('click', () => {
         modal.style.display = 'block';
       });
 
@@ -51,18 +46,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (target.classList.contains('popup-close')) {
           modal.style.display = 'none';
-          clearForm();
+          clearForm(modalForm);
         } else {
           target = target.closest('.form-content');
     
           if (!target) {
             modal.style.display = 'none';
-            clearForm();
+            clearForm(modalForm);
           }
         }
       });
     };
+
+    //modal 1, id = free_visit_form
+    const modalOne = () => {
+      const modal = document.getElementById('free_visit_form'),
+            openModal = document.querySelector('.open-popup'),
+            modalForm = document.getElementById('form2');
+
+      openCloseModal(openModal, modal, modalForm);
+    };
     modalOne();
+
+    //modal 2, id = callback_form
+    const modalTwo = () => {
+      const modalBtn = document.querySelector('.callback-btn'),
+            modalCall = document.getElementById('callback_form'),
+            modalForm = document.getElementById('form1');
+
+      openCloseModal(modalBtn, modalCall, modalForm);    
+    };
+    modalTwo();
 
   };
   modalWindows();
