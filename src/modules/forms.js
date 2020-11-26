@@ -1,6 +1,7 @@
 import showThanksModal from './showThankModal';
-import validate from './validate';
 import errorModal from './errorModal';
+import validateForms from './validateForms';
+
 
 const forms = () => {
   const forms = document.querySelectorAll('form');
@@ -23,22 +24,7 @@ const forms = () => {
 
   const formFunc = (form) => {
 
-    const validateForms = () => {
-      [...form.elements].forEach(item => {
-        item.addEventListener('input', () => {
-          if (item.tagName.toLowerCase() !== 'button' && item.type !== 'button') {
-            if (item.type === 'tel') {
-              item.value = validate(item.value).phoneInput();
-            }
-
-            if (item.type === 'text' || item.name === 'user_message') {
-              item.value = validate(item.value).textInput();
-            }
-          }
-        });
-      });
-    };
-    validateForms();
+    validateForms(form);
 
     const bindPostData = (form) => {
       form.addEventListener('submit', (e) => {
