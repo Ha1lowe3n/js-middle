@@ -65,7 +65,9 @@ const validateForms = (form, btns) => {
       item.classList.add('phone-class');
       maskPhone(`.${item.className}`);
     }
-    
+
+    let isRun = true;
+
     const changeInput = () => {
       const errorText = document.createElement('div');
       errorText.classList.add('validate-error');
@@ -74,14 +76,20 @@ const validateForms = (form, btns) => {
         item.value = '';
         setTimeout(() => {
           errorText.remove();
+          isRun = true;
         }, 3000);
       };
       
       if (item.type === 'text') {
-        if (!validate(item.value.trim()).textBlur() && item.value !== '') {
+        if (
+          !validate(item.value.trim()).textBlur() && item.value !== '' && 
+          isRun === true
+          ) {
           errorText.textContent = 'Допустим ввод только русских букв!';
+          isRun = false;
+
           item.insertAdjacentElement('afterend', errorText);
-          clearError();
+          clearError();       
         } 
       } 
        
