@@ -23,8 +23,11 @@ const forms = () => {
   };
 
   const formFunc = (form) => {
+    const btns = form.querySelector('button');
 
-    validateForms(form);
+    //console.log(form);
+
+    validateForms(form, btns);
 
     const bindPostData = (form) => {
       form.addEventListener('submit', (e) => {

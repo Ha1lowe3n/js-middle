@@ -1,6 +1,7 @@
 import maskPhone from './maskPhone';
 
-const validateForms = (form) => {
+const validateForms = (form, btns) => {
+
   const validate = (target) => {
     const phoneInput = () => {
       return target.replace(/[^\+\d]/ig, '');
@@ -33,23 +34,43 @@ const validateForms = (form) => {
   };
 
   [...form.elements].forEach(item => {
-    item.addEventListener('input', () => {
-      if (item.tagName.toLowerCase() !== 'button' && item.type !== 'button') {
-        if (item.type === 'tel') {          
-          item.classList.add('phone-class');
-          maskPhone(`.${item.className}`);
-        }
-      }
-    });
+  
+    const checkbox = (item) => {
+     
+      if (item.type === 'checkbox') {
+        btns.addEventListener('click', () => {
+          if (!item.checked) {
+            btns.disabled = true;
 
+            const errorText = document.createElement('div');
+            errorText.classList.add('validate-error');
+            errorText.textContent = 'Подтвердите обработку данных!';
+            form.insertAdjacentElement('afterend', errorText);
+
+            const clearError = () => {
+              setTimeout(() => {
+                btns.disabled = false;
+                errorText.remove();
+              }, 3000);
+            }; 
+            clearError();
+          } 
+        });
+      }
+      
+    };
+    checkbox(item);
+    
+    if (item.type === 'tel') {          
+      item.classList.add('phone-class');
+      maskPhone(`.${item.className}`);
+    }
+    
     const changeInput = () => {
       const errorText = document.createElement('div');
       errorText.classList.add('validate-error');
-      errorText.style.cssText = `color: red;`;
 
       const clearError = () => {
-        item.insertAdjacentElement('afterend', errorText);
-        
         item.value = '';
         setTimeout(() => {
           errorText.remove();
@@ -59,6 +80,7 @@ const validateForms = (form) => {
       if (item.type === 'text') {
         if (!validate(item.value.trim()).textBlur() && item.value !== '') {
           errorText.textContent = 'Допустим ввод только русских букв!';
+          item.insertAdjacentElement('afterend', errorText);
           clearError();
         } 
       } 
