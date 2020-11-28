@@ -1,4 +1,103 @@
 const sliderCarus = () => {
+
+  const style = document.createElement("style");
+  style.id = "carousel-style";
+  style.textContent = `
+    .services-slider {
+      width: 100%;
+      overflow: hidden;
+      padding-left: 5px;
+      position: relative;
+    }
+
+    .services-slider > .slide {   
+      min-width: 226px;    
+      margin-right: 0% !important; 
+      margin-left: 0%!important;
+      transition: transform 0.5s !important;
+      will-change: transform !important;
+    }
+
+    .services-slider > span {
+      position: absolute;
+      width: 36px;
+      height: 37px;
+      background-color: #f4c71b !important;
+      border-radius: 50%;
+      text-align: center;
+      padding-top: 11px;
+    }
+
+    .carousel-slider-left {
+      top: 22%;
+      left: 0;
+      cursor: pointer;
+    }
+
+    .carousel-slider-right {
+      top: 22%;
+      left: 97%;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1100px) {
+
+    .services-slider {
+      width: 95%;
+    }
+
+    .services-slider > .slide {
+      flex: 0 0 34%;   
+
+    }
+  }
+
+    @media (max-width: 768px) {
+
+    .services-slider {
+      width: 90%;
+    }
+
+    .services-slider > .slide {
+      flex: 0 0 100%;   
+    }
+
+    .carousel-slider-left {
+      top: 22;
+      left: 3%;
+      cursor: pointer;
+    }
+
+    .carousel-slider-right {
+      top: 22%;
+      left: 80%;
+      cursor: pointer;
+    }
+  }
+
+    @media (max-width: 330px) {
+
+    .carousel-slider-left {
+      left: 3%;
+    }
+  
+    .carousel-slider-right {
+      left: 80%;
+    }
+  }
+
+    @media (max-width: 380px) {
+
+    .carousel-slider-left {
+      left: 6%;
+    }
+  
+    .carousel-slider-right {
+      left: 80%;
+    }
+  }
+    `;
+  document.head.append(style);
   
   const slider = document.querySelector(".services-slider"),
         slides = [...slider.children],
