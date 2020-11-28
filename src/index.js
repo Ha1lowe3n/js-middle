@@ -5,6 +5,7 @@ import forms from './modules/forms';
 import giftModal from './modules/giftModal';
 import slider from './modules/slider';
 import sliderCarus from './modules/sliderCarus';
+import sliderGallery from './modules/sliderGallery';
 
 
 showClubsMenu();
@@ -13,4 +14,5 @@ forms();
 giftModal();
 slider();
 sliderCarus();
+sliderGallery();
 
