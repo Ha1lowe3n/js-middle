@@ -1,6 +1,9 @@
 const showThanksModal = (form) => {
   const thanks = document.getElementById('thanks');
-  form.closest('.popup').style.display = 'none';
+  if (form.closest('.popup')) {
+    form.closest('.popup').style.display = 'none';
+  }
+  
   thanks.style.display = 'block';
   
   setTimeout(() => {

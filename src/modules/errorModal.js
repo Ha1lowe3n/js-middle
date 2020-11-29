@@ -1,6 +1,12 @@
 const errorModal = (form) => {
   const thanks = document.getElementById('thanks');
-  form.closest('.popup').style.display = 'none';
+  if (form.closest('.popup')) {
+    form.closest('.popup').style.display = 'none';
+  }
+  
+
+  //form.style.display = 'none';
+  
   const content = thanks.querySelector('.form-wrapper');
   content.innerHTML = `
     <div class="close-form">
