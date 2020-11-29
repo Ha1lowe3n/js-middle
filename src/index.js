@@ -8,6 +8,7 @@ import sliderCarus from './modules/sliderCarus';
 import sliderGallery from './modules/sliderGallery';
 import burger from './modules/burger';
 import calculator from './modules/calculator';
+import upperArrow from './modules/upperArrow';
 
 
 showClubsMenu();
@@ -19,4 +20,5 @@ sliderCarus();
 sliderGallery();
 burger();
 calculator();
+upperArrow();
 
