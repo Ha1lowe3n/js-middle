@@ -4,7 +4,7 @@ const burger = () => {
   const triggerBurger = () => {
     const topMenu = document.querySelector(".top-menu");
 
-    if (window.pageYOffset > 190 && window.innerWidth < 768) {
+    if (window.pageYOffset > 190 && window.innerWidth <= 768) {
       topMenu.style.position = "fixed";
     } else {
       topMenu.style.position = "";
@@ -18,18 +18,15 @@ const burger = () => {
     const target = e.target;
 
     if (target.closest(".hidden-large > img")) {
-      popupMenu.style.display = "block";
-      console.log('hidden-large');
+      popupMenu.style.display = "flex";
     }
 
     if (target.closest(".close-menu-btn > img ")) {
       popupMenu.style.display = "none";
-      console.log('close-menu-btn');
     }
 
     if (target.closest(".scroll > a")) {
       popupMenu.style.display = "none";
-      console.log('scroll');
     }
   });
 };
