@@ -7,7 +7,7 @@ const calculator = () => {
         priceTotal = document.getElementById("price-total"),
         cardLetoMozaika = document.getElementById("card_leto_mozaika"),
         cardLetoSchelkovo = document.getElementById("card_leto_schelkovo"),
-        club = document.getElementById("card_order"),
+        time = document.querySelector('.time'),
         promocode = "ТЕЛО2019";
 
   const currentPrice = () => {
@@ -86,7 +86,9 @@ const calculator = () => {
     }
   };
 
-  club.addEventListener('click', currentPrice);
+  if (time) {
+    time.addEventListener('click', currentPrice);
+  }
   
   if (inputPromo) {
     inputPromo.addEventListener('input', currentPrice);

@@ -32,7 +32,7 @@ const forms = () => {
         e.preventDefault();
 
         const statusMessage = document.createElement('div');
-        statusMessage.style.cssText = `color: white`;
+        statusMessage.style.cssText = `color: red`;
         statusMessage.textContent = message.loading;
         
         form.insertAdjacentElement('afterend', statusMessage);
