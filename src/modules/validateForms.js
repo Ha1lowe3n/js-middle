@@ -34,30 +34,49 @@ const validateForms = (form, btns) => {
   };
 
   [...form.elements].forEach(item => {
+
+    const fail = (message) => {
+      btns.disabled = true;
+
+      const errorText = document.createElement('div');
+      errorText.classList.add('validate-error');
+      errorText.textContent = message;
+      form.insertAdjacentElement('afterend', errorText);
+
+      const clearError = () => {
+        setTimeout(() => {
+          btns.disabled = false;
+          errorText.remove();
+        }, 3000);
+      }; 
+      clearError();
+    };
+
+    const radio = (item) => {
+      const radio1 = document.getElementById('footer_leto_mozaika'),
+            radio2 = document.getElementById('footer_leto_schelkovo');
+  
+      if (item.type === 'radio') {
+        if (item.id === 'footer_leto_mozaika') {
+          btns.addEventListener('click', () => {
+            if (!radio1.checked && !radio2.checked) {
+              fail('Выберите один из клубов!');
+            }
+          });
+        }
+      } 
+        
+    };
+    radio(item);
   
     const checkbox = (item) => {
-     
       if (item.type === 'checkbox') {
         btns.addEventListener('click', () => {
           if (!item.checked) {
-            btns.disabled = true;
-
-            const errorText = document.createElement('div');
-            errorText.classList.add('validate-error');
-            errorText.textContent = 'Подтвердите обработку данных!';
-            form.insertAdjacentElement('afterend', errorText);
-
-            const clearError = () => {
-              setTimeout(() => {
-                btns.disabled = false;
-                errorText.remove();
-              }, 3000);
-            }; 
-            clearError();
+            fail('Подтвердите обработку данных!');
           } 
         });
-      }
-      
+      } 
     };
     checkbox(item);
     

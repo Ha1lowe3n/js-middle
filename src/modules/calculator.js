@@ -87,7 +87,11 @@ const calculator = () => {
   };
 
   club.addEventListener('click', currentPrice);
-  inputPromo.addEventListener('input', currentPrice);
+  
+  if (inputPromo) {
+    inputPromo.addEventListener('input', currentPrice);
+  }
+  
 };
 
 export default calculator;

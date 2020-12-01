@@ -38,9 +38,9 @@ const forms = () => {
         form.insertAdjacentElement('afterend', statusMessage);
 
         const formData = new FormData(form);
-
+    
         const json = JSON.stringify(Object.fromEntries(formData.entries()));
-
+        
         postData('server.php', json)
         .then((response) => {
           if (!response.ok) {

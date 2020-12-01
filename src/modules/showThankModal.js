@@ -7,7 +7,7 @@ const showThanksModal = (form) => {
   thanks.style.display = 'block';
   
   setTimeout(() => {
-    document.getElementById('thanks').style.display = 'none';
+    thanks.style.display = 'none';
   }, 4000);
 };
 

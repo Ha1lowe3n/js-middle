@@ -2,7 +2,11 @@ const modalWindows = () => {
 
   const clearForm = (form) => {
     [...form.elements].forEach(item => {
-      if (item.tagName.toLowerCase() !== 'button' && item.type !== 'button') {
+      if (
+        item.tagName.toLowerCase() !== 'button' && 
+        item.type !== 'button' &&
+        item.name !== 'form_name'
+      ) {
         item.value = '';
       }
     });
